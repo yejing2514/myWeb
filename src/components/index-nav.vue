@@ -4,7 +4,7 @@
     <h3>欢迎来到我的个人网站</h3>
     <div id="highlights">
       <div class="inner">
-        <div class="point" v-for="item in myProject">
+        <div class="point" v-for="item in myProject" @click="goPage(item.router)">
           <h2>{{item.name}}</h2>
           <p>{{item.introduction}}</p>
         </div>
@@ -25,11 +25,18 @@
     data () {
       return {
         myProject: [
-          {name: '个人记账系统(PC端)', introduction: '一个管理你的消费状况的后台系统'},
-          {name: '个人记账系统(移动端)', introduction: '一个管理你的消费状况的后台系统'},
-          {name: '个人记账系统(微信端)', introduction: '一个管理你的消费状况的后台系统'},
-          {name: '聊天室', introduction: '一个用websorket搭建的聊天室应用'}
+          {name: '个人记账系统(PC端)', introduction: '一个管理你的消费状况的后台系统', router: 'ACCOUNTINGPC'},
+          {name: '个人记账系统(移动端)', introduction: '一个管理你的消费状况的后台系统', router: 'ACCOUNTINGMB'},
+          {name: '个人记账系统(微信端)', introduction: '一个管理你的消费状况的后台系统', router: 'ACCOUNTINGWX'},
+          {name: '聊天室', introduction: '一个用websorket搭建的聊天室应用', router: 'CHATROOM'}
         ]
+      }
+    },
+    methods: {
+      goPage (router) {
+        this.$router.push({
+          name: router
+        })
       }
     }
   }
@@ -59,6 +66,7 @@
 
   #highlights .point
     display: inline-block;
+    cursor pointer
     vertical-align: top;
     box-sizing: border-box;
     padding: 0 2em;

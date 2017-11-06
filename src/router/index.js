@@ -10,14 +10,32 @@ const router = new Router({
   routes: [{
     name: names.INDEXNAV,
     path: '/indexNav',
-    component(resolve) {
+    component (resolve) {
       require(['../components/index-nav.vue'], resolve)
     }
   }, {
-    name: names.LOGIN,
-    path: '/login',
-    component(resolve) {
-      require(['../components/login.vue'], resolve)
+    name: names.ACCOUNTINGPC,
+    path: '/accountingPC',
+    component (resolve) {
+      require(['../components/accountingPC/login.vue'], resolve)
+    }
+  }, {
+    name: names.ACCOUNTINGMB,
+    path: '/accountingMB',
+    component (resolve) {
+      require(['../components/accountingMB/index.vue'], resolve)
+    }
+  }, {
+    name: names.ACCOUNTINGWX,
+    path: '/accountingWX',
+    component (resolve) {
+      require(['../components/accountingWX/index.vue'], resolve)
+    }
+  }, {
+    name: names.CHATROOM,
+    path: '/chatRoom',
+    component (resolve) {
+      require(['../components/chatRoom/index.vue'], resolve)
     }
   }]
 })
@@ -28,11 +46,6 @@ router.beforeEach((to, from, next) => {
     storage.setMenu({
       to: to.name
     })
-    if (!sessionStorage.getItem('User')) {
-      next({
-        path: '/indexNav'
-      })
-    }
   }
   next()
 })
